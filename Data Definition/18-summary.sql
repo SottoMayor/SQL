@@ -1,0 +1,89 @@
+-- 1 Create a new DB for the online shop
+-- CREATE DATABASE shop;
+
+-- 2 Add a table for the products / 3 Choose appropriate columns name and data types
+-- CREATE TYPE prod_type AS ENUM('digital product', 'product');
+-- CREATE TABLE IF NOT EXISTS products (
+--     product_name varchar(100) NOT NULL,
+--     price NUMERIC(5, 2) NOT NULL,
+--     product_description varchar(250),
+--     amount_stock INT,
+--     image_url TEXT DEFAULT 'https://pay.internationalglobalnetwork.com/wp-content/uploads/woocommerce-placeholder.png',
+--     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--     product_especification prod_type
+-- );
+
+-- 4 Insert dummy data into created table
+-- INSERT INTO products (
+--         product_name,
+--         price,
+--         product_description,
+--         amount_stock,
+--         image_url
+--     )
+-- VALUES (
+--         'A book',
+--         12.23,
+--         'The Chronicles of Narnia!',
+--         10,
+--         'https://i.zst.com.br/thumbs/12/3/3f/1457928560.jpg'
+--     );
+-- INSERT INTO products (
+--         product_name,
+--         price,
+--         product_description,
+--         amount_stock,
+--         image_url
+--     )
+-- VALUES (
+--         'Fly killer',
+--         1.99,
+--         'An amazing fly killer!',
+--         3,
+--         'https://ae01.alicdn.com/kf/H366b3d73e7a4492b9419d81c0a3806cdC/1Pcs-Durable-Hollow-Household-Long-Handle-Plastic-Fly-Trap-Mosquito-Swatter-Fly-Killer-Hand-Manual-Flapper.jpg_Q90.jpg_.webp'
+--     );
+
+-- 5 Updated table and add sensible constraints
+-- ALTER TABLE products
+-- ADD CONSTRAINT unique_product_name UNIQUE (product_name),
+-- ALTER COLUMN price SET DEFAULT 0.0,
+-- ADD CONSTRAINT check_price CHECK (price >= 0.0),
+-- ALTER COLUMN product_description SET NOT NULL,
+-- ALTER COLUMN amount_stock SET NOT NULL,
+-- ADD CONSTRAINT check_amount_stock CHECK (amount_stock >= 0),
+-- ADD CONSTRAINT unique_image_url UNIQUE (image_url),
+-- ALTER COLUMN product_especification SET DEFAULT 'product';
+
+-- INSERT INTO products (
+--         product_name,
+--         price,
+--         product_description,
+--         amount_stock
+--     )
+-- VALUES (
+--         'Chocolate',
+--         2.59,
+--         'A delicious milk chocolate!',
+--         79);
+
+-- INSERT INTO products (
+--         product_name,
+--         price,
+--         product_description,
+--         amount_stock,
+--         image_url
+--     )
+-- VALUES (
+--         'Fly killer',
+--         1.99,
+--         'An amazing fly killer!',
+--         3,
+--         'https://ae01.alicdn.com/kf/H366b3d73e7a4492b9419d81c0a3806cdC/1Pcs-Durable-Hollow-Household-Long-Handle-Plastic-Fly-Trap-Mosquito-Swatter-Fly-Killer-Hand-Manual-Flapper.jpg_Q90.jpg_.webp'
+--     );
+
+-- 6 Update table and add primary key
+-- ALTER TABlE products
+-- ADD COLUMN id SERIAL PRIMARY KEY;
+
+-- 7 Show the result!
+SELECT * FROM products;

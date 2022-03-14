@@ -1,0 +1,1 @@
+INSERT INTO users (yearly_salary, full_name, current_status) VALUES (84000, 'David SMM Fernandes', 'employed')
