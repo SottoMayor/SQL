@@ -1,0 +1,10 @@
+-- DROPPING TABLES
+DROP TABLE cities;
+DROP TABLE addresses;
+
+-- DROPPING VIEWS
+DROP VIEW users_group_1;
+DROP VIEW users_group_2;
+
+-- DROPPING THE USERS TABLE
+DROP TABLE users;
