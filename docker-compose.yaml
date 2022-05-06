@@ -1,0 +1,32 @@
+# PAY ATTENTION: If it is necessary to test or verify any query, we can execute this docker-compose file.
+
+# Instructions: 
+# 1 - You must have the docker installed, and execute in 'docker-compose up' in the terminal
+# 2 - Now, you should follow this steps:
+    # 2.1 - To log in PGADMIN you must go to the url 'localhost', right after putting the credentials available in pgadmin.env
+    # 2.2 - To connect to the database you must get the DB information in postgres.env
+    # 2.3 - IMPORTANT: The host to connect the DB to must be the IP of the postgres container. For that, you must run the command 
+    #       'docker inspect <container_id>' to get the information "IPAddress"("NetworkSettings"->"Networks"->"IPAddress")
+    # 2.4 - IMPORTANT: Even though the exposed port is '5433', to make the connection inside pgadmin we use the '5432'.
+
+version: "3.8"
+services:
+  postgresdb: 
+    image: postgres
+    restart: always
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./volume:/var/lib/postgresql/data
+    env_file:
+      - ./env_files/postgres.env
+  pgadmin:
+    depends_on:
+      - postgresdb
+    image: dpage/pgadmin4
+    env_file:
+      - ./env_files/pgadmin.env
+    ports:
+      - '80:80'
+volumes:
+  volume:
